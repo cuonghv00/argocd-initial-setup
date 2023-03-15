@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd-prod
+spec:
+  destination:
+    namespace: argocd-prod
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: argocd-initial-setup/argocd-prod
+    repoURL: https://github.com/cuonghv00/argocd-initial-setup
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: false
+
